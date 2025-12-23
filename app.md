@@ -6,8 +6,6 @@ It acts as the control and interaction layer between the user interface, the sig
 The script does not perform sign detection itself.
 Instead, it **orchestrates detection, retrieves predictions, and converts recognized sentences into speech**.
 
-Here is the script : 
-
 ## Purpose of the Script
 
 This script is responsible for:
