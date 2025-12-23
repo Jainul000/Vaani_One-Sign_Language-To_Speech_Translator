@@ -6,8 +6,6 @@ It handles **video capture**, **keypoint extraction**, **model inference**, **se
 
 All higher-level interaction (UI, speech output, buttons) is handled elsewhere.
 
-Here is the script : 
-
 ## Purpose of the Script
 
 This script is responsible for:
