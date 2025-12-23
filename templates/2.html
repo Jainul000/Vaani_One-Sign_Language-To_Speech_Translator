@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VAANI ONE - Sign Language Translator</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary-color: #8CC850;
+        --primary-hover: #C8DC64;
+        --secondary-color: #0A1E78;
+        --secondary-hover: #283C78;
+        --accent-color: #28966E;
+        --accent-hover: #288C78;
+        --background-light: #f0f5f0; /* soft green for contrast */
+        --text-primary: #111827;
+        --text-secondary: #6b7280;
+        --card-bg: #ffffff;
+        --badge-radius: 9999px;
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      body {
+        background: var(--background-light);
+        font-family: "Poppins", Arial, sans-serif;
+        color: var(--text-primary);
+        min-height: 100vh;
+        margin: 0;
+        padding: 2rem 1rem;
+      }
+
+      /* Brand with top icon */
+      .brand-container {
+        display: flex;
+        /* flex-direction: column; */
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .brand-container img {
+        width: 110px;
+        height: 110px;
+        margin-bottom: 8px; /* gap between icon and brand name */
+      }
+
+      .brand {
+        font-weight: 700;
+        font-size: 3rem;
+        color: var(--primary-color);
+        /* text-align: center; */
+        user-select: none;
+      }
+
+      .tagline {
+        color: var(--text-secondary);
+        font-size: 1.125rem;
+        text-align: center;
+        margin-top: 0.1rem;
+        margin-bottom: 3rem;
+        font-style: italic;
+        user-select: none;
+      }
+
+      h3 {
+        font-weight: 600;
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+      }
+
+      p.text-muted {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Buttons */
+      .btn {
+        font-weight: 600;
+        border-radius: 24px;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: var(--shadow-md);
+        border: none;
+        user-select: none;
+      }
+
+      .btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
+      }
+
+      .blue-badge {
+        background-color: var(--secondary-color);
+        color: #fff;
+      }
+      .blue-badge:hover {
+        background-color: var(--secondary-hover);
+        box-shadow: 0 6px 15px rgba(0, 30, 120, 0.3);
+        cursor: pointer;
+      }
+
+      .orange-badge {
+        background-color: var(--accent-color);
+        color: #fff;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .orange-badge:hover {
+        background-color: var(--accent-hover);
+        box-shadow: 0 6px 15px rgba(40, 140, 120, 0.3);
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      /* Card styles */
+      .card {
+        background: var(--card-bg);
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: default;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      .card-img-top {
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        height: 120px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+      .card:hover .card-img-top {
+        transform: scale(1.05);
+      }
+
+      .card-body {
+        padding: 1rem 1rem 1.25rem;
+      }
+
+      .card-title {
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--primary-color);
+        user-select: none;
+      }
+
+      /* Text sections */
+      #liveOutput {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        min-height: 40px;
+        user-select: text;
+      }
+
+      #liveHindiOutput {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--accent-color);
+        min-height: 40px;
+        user-select: text;
+      }
+
+      .community-badge {
+        border-radius: var(--badge-radius);
+        padding: 0.6rem 1.4rem;
+        margin: 0.25rem 0.5rem 0.5rem 0;
+        display: inline-block;
+        transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        user-select: none;
+      }
+
+      .d-flex.flex-wrap {
+        gap: 0.5rem 1rem;
+      }
+
+      .text-center.mb-3 {
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Brand with Top Icon -->
+      <div class="brand-container" style="flex-direction: row;">
+        <img src="{{ url_for('static', filename='images/icon.png') }}" alt="VAANI ONE Icon" style="width:110px; height:110px; margin-right: 15px;"/>
+        <span class="brand" style="display:flex; align-items:center;">VAANI ONE</span>
+      </div>
+      <p class="tagline">"Giving hands a voice — converting signs to speech."</p>
+
+      <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-8">
+          <h3>Welcome</h3>
+          <p class="text-muted">What would you like to do today?</p>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="d-flex flex-wrap">
+                <div class="community-badge blue-badge btn" onclick="startTranslation()">Start Translation</div>
+                <a href="https://www.youtube.com/watch?v=5PF6JXzYyUI" target="_blank" class="community-badge orange-badge btn">Learn ISL</a>
+                <a href="https://indiansignlanguage.org/" target="_blank" class="community-badge orange-badge btn">ISL Dictionary</a>
+                <a href="{{ url_for('static', filename='howtouse.html') }}" target="_blank" class="community-badge orange-badge btn">How To Use</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h5>🧠 Predicted Sentence (English):</h5>
+            <p id="liveOutput">Waiting for prediction...</p>
+
+            <h5>🌐 Hindi Translation:</h5>
+            <p id="liveHindiOutput">Waiting for translation...</p>
+
+            <div class="mt-3 d-flex gap-2 flex-wrap">
+              <button class="btn btn-success" onclick="speakSentence()">🔊 Speak Sentence</button>
+              <button id="toggleLangBtn" class="btn btn-secondary" onclick="toggleLanguage()">🌐 Switch (Hindi)</button>
+              <button class="btn btn-warning" onclick="clearLastWord()">🧹 Clear Last Word</button>
+              <button class="btn btn-danger" onclick="clearAll()">❌ Clear All</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Crops Knowledge Base -->
+        <div class="col-md-4 d-flex flex-column align-items-center">
+          <div class="w-100" style="margin-top: 60px">
+            <h5 class="text-center mb-3">📚 Knowledge Base of Crops</h5>
+            <div class="row row-cols-1 g-3 w-100 px-2">
+              <div class="col">
+                <div class="card h-100 shadow-sm">
+                  <a href="{{ url_for('static', filename='Wheat.jpg') }}" target="_blank">
+                    <img src="{{ url_for('static', filename='Wheat1.jpg') }}" class="card-img-top" alt="Wheat"/>
+                  </a>
+                  <div class="card-body text-center p-2">
+                    <small class="card-title">Wheat</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100 shadow-sm">
+                  <a href="{{ url_for('static', filename='Paddy.jpg') }}" target="_blank">
+                    <img src="{{ url_for('static', filename='Paddy1.jpg') }}" class="card-img-top" alt="Paddy"/>
+                  </a>
+                  <div class="card-body text-center p-2">
+                    <small class="card-title">Paddy</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100 shadow-sm">
+                  <a href="{{ url_for('static', filename='Maize.jpg') }}" target="_blank">
+                    <img src="{{ url_for('static', filename='Maize1.jpg') }}" class="card-img-top" alt="Maize"/>
+                  </a>
+                  <div class="card-body text-center p-2">
+                    <small class="card-title">Maize</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100 shadow-sm">
+                  <a href="{{ url_for('static', filename='Barley.jpg') }}" target="_blank">
+                    <img src="{{ url_for('static', filename='Barley1.jpg') }}" class="card-img-top" alt="Barley"/>
+                  </a>
+                  <div class="card-body text-center p-2">
+                    <small class="card-title">Barley</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
