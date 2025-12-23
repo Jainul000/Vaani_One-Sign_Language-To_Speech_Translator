@@ -1,15 +1,19 @@
 
-<img src="static/images/icon.png" style="display: block; margin: auto;" width="10%">
+<!-- <img src="static/images/icon.png" style="display: block; margin: auto;" width="10%"> -->
 
-<!-- <div align="center">
-	<code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/python.png" alt="Python" title="Python"/></code>
-    </>
-</div> -->
+<p align="left">
+  <img src="static/images/icon.png" width="60" />
+  &nbsp;&nbsp;
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=poppins&size=50&pause=1000&color=8CC850&vCenter=true&width=900&lines=VAANI+ONE" />
+  </a>
+</p>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=poppins&size=50&pause=1000&color=8CC850&center=true&vCenter=true&width=999&lines=VAANI+ONE)](https://git.io/typing-svg)
 
-<h1 style="text-align: center;">Sign Language to Speech Conversion System</h1>
-<!-- # Sign Language to Speech Conversion System -->
+<!-- <h1 align="center">
+  <span style="color: green;">Sign Language to Speech Conversion System</span>
+</h1> -->
+# Sign Language to Speech Conversion System 
 
 <img src="static/images/home_page.jpg" style="display: block; margin: auto;" width="100%">
 
