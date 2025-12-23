@@ -5,8 +5,6 @@ It is a data collection utility within a larger Sign Language to Speech Conversi
 
 The script captures short, fixed-length videos for each sign and stores them in a structured format suitable for further processing (e.g., landmark extraction, feature generation, model training).
 
-Here is the script : 
-
 ## Purpose of the Script
 
 record.py is responsible for:
