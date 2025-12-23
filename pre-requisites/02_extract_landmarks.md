@@ -5,8 +5,6 @@ The extracted landmarks are saved as **NumPy** (`.npy`) files and serve as model
 
 This script is used after record.py in the larger Sign Language to Speech Conversion project.
 
-Here is the script : 
-
 ## Purpose of the Script
 
 This script is responsible for:
